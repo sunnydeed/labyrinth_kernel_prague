@@ -1,14 +1,14 @@
 #!/bin/bash
 # Variables
 BUILDDIR=$(pwd)
-OUTDIR="hidrogen/out"
-RELDIR="hidrogen/release"
-TOOLCHAIN="hidrogen/toolchain/bin/aarch64-linux-android-"
-AKDIR="hidrogen/anykernel2"
+OUTDIR="labyrinth/out"
+RELDIR="labyrinth/release"
+TOOLCHAIN="labyrinth/toolchain/bin/aarch64-linux-android-"
+AKDIR="labyrinth/anykernel2"
 JOBS=$(nproc --all)
-LOGS="hidrogen/logs"
+LOGS="labyrinth/logs"
 TIMESTAMP=$(date +%Y%m%d%H%M)
-CONFIG=hidrogen_defconfig
+CONFIG=labyrinth_defconfig
 # Functions
 CLEAN()
 {
@@ -36,7 +36,7 @@ else
 	echo "Creating flashable zip"
 	cp $BUILDDIR/$OUTDIR/arch/arm64/boot/Image.gz $BUILDDIR/$AKDIR/Image.gz
 	( cd $BUILDDIR/$AKDIR/ ; zip -q -r9 UPDATE-AnyKernel2.zip * -x README UPDATE-AnyKernel2.zip )
-	cp $BUILDDIR/$AKDIR/UPDATE-AnyKernel2.zip $BUILDDIR/$RELDIR/$TIMESTAMP-HiDrogen.zip
+	cp $BUILDDIR/$AKDIR/UPDATE-AnyKernel2.zip $BUILDDIR/$RELDIR/$TIMESTAMP-labyrinth.zip
 fi
 }
 while getopts "b:dc" o; do
